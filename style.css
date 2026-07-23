@@ -40,6 +40,11 @@
 }
 
 /* Base Styles */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Offset for fixed navbar */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -566,6 +571,74 @@ body.dark-mode .footer-bottom { border-top-color: rgba(255,255,255,0.1); }
     .footer-content { flex-direction: column; text-align: center; gap: 2rem; }
 }
 
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 22, 20, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background-color: var(--clr-bg);
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--clr-border);
+    position: relative;
+    transform: translateY(20px) scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body.dark-mode .modal-card {
+    background-color: var(--clr-paper-dark);
+    border-color: var(--clr-border-dark);
+}
+
+.modal-overlay.active .modal-card {
+    transform: translateY(0) scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--clr-text-muted);
+    transition: color var(--transition-fast);
+    line-height: 1;
+}
+
+body.dark-mode .modal-close {
+    color: var(--clr-text-dark-muted);
+}
+
+.modal-close:hover {
+    color: var(--clr-accent);
+}
+
 /* Print Styles */
 @media print {
     .navbar, .footer, .reader-mode-controls, .hero-image-wrapper {
@@ -581,5 +654,34 @@ body.dark-mode .footer-bottom { border-top-color: rgba(255,255,255,0.1); }
     .lyric-text {
         font-size: 14pt !important;
         color: black !important;
+    }
+    
+    /* Show only the lyric modal content when printing */
+    body * {
+        visibility: hidden;
+    }
+    #lyricModal, #lyricModal * {
+        visibility: visible;
+    }
+    #lyricModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+    .modal-card {
+        border: none !important;
+        box-shadow: none !important;
+        background: white !important;
+        padding: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+        transform: none !important;
+    }
+    .modal-close, .reader-mode-controls {
+        display: none !important;
     }
 }

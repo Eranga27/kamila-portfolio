@@ -25,7 +25,7 @@
 <body>
     <header class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#/" class="brand nav-link" aria-label="Kamila Ratnayake Home">
+            <a href="#home" class="brand nav-link" aria-label="Kamila Ratnayake Home">
                 <span class="brand-text">Kamila Ratnayake</span>
             </a>
             
@@ -36,13 +36,13 @@
             </button>
             
             <nav class="nav-links" id="navLinks">
-                <a href="#/" class="nav-link">Home</a>
-                <a href="#/about" class="nav-link">About</a>
-                <a href="#/lyrics" class="nav-link">Lyrics</a>
-                <a href="#/songs" class="nav-link">Songs</a>
-                <a href="#/awards" class="nav-link">Awards</a>
-                <a href="#/gallery" class="nav-link">Gallery</a>
-                <a href="#/contact" class="nav-link">Contact</a>
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#lyrics" class="nav-link">Lyrics</a>
+                <a href="#songs" class="nav-link">Songs</a>
+                <a href="#awards" class="nav-link">Awards</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </nav>
         </div>
     </header>
@@ -59,14 +59,22 @@
                 <p>A Digital Literary Archive</p>
             </div>
             <div class="footer-links">
-                <a href="#/lyrics" class="nav-link">Lyrics Collection</a>
-                <a href="#/contact" class="nav-link">Get in Touch</a>
+                <a href="#lyrics" class="nav-link">Lyrics Collection</a>
+                <a href="#contact" class="nav-link">Get in Touch</a>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; <span id="currentYear"></span> Kamila Ratnayake. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Lyric Detail Modal -->
+    <div id="lyricModal" class="modal-overlay" onclick="app.handleModalCloseClick(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="app.closeLyricModal()" aria-label="Close Modal">&times;</button>
+            <div id="modalLyricBody"></div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="data.js"></script>

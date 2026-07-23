@@ -2,17 +2,17 @@
 
 const Pages = {
     renderHome: () => `
-        <section class="hero container animate-on-scroll visible">
+        <section id="home" class="hero container animate-on-scroll visible">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>${siteData.hero.name}</h1>
                     <p class="hero-tagline">${siteData.hero.tagline}</p>
-                    <a href="#/lyrics" class="btn btn-primary" data-link>Explore Lyrics</a>
-                    <a href="#/about" class="btn btn-outline" style="margin-left: 1rem;" data-link>Read Biography</a>
+                    <a href="#lyrics" class="btn btn-primary">Explore Lyrics</a>
+                    <a href="#about" class="btn btn-outline" style="margin-left: 1rem;">Read Biography</a>
                 </div>
                 <div class="hero-image-wrapper">
                     <div class="hero-decoration"></div>
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop" alt="Kamila Ratnayake Portrait" class="hero-image">
+                    <img src="images/kamila-garden.png" alt="Kamila Ratnayake Portrait" class="hero-image">
                 </div>
             </div>
         </section>
@@ -22,8 +22,8 @@ const Pages = {
                 <h2>Featured Excerpts</h2>
             </div>
             <div class="grid-3">
-                ${siteData.lyrics.slice(0,3).map(lyric => `
-                    <div class="card lyric-item" onclick="app.navigate('#/lyrics/${lyric.id}')">
+                ${siteData.lyrics.slice(0, 3).map(lyric => `
+                    <div class="card lyric-item" onclick="app.openLyricModal('${lyric.id}')">
                         <h3 class="lyric-title-si">${lyric.title_si}</h3>
                         <p class="lyric-meta">${lyric.title_en} • ${lyric.year}</p>
                         <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--clr-border);">
@@ -33,32 +33,19 @@ const Pages = {
                 `).join('')}
             </div>
             <div class="text-center" style="margin-top: 3rem;">
-                <a href="#/lyrics" class="btn btn-outline" data-link>View All Lyrics</a>
-            </div>
-        </section>
-        
-        <section class="container animate-on-scroll" style="background-color: var(--clr-paper); padding: 4rem; border-radius: var(--radius-lg); margin-bottom: 6rem;">
-            <div class="grid-2" style="align-items: center;">
-                <div>
-                    <h2 class="font-serif" style="font-size: 2.5rem; margin-bottom: 1.5rem;">About the Lyricist</h2>
-                    <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem;">${siteData.hero.bioPreview}</p>
-                    <a href="#/about" class="btn btn-primary" data-link>Full Biography</a>
-                </div>
-                <div style="text-align: right;">
-                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop" alt="Writing" style="border-radius: var(--radius-md); max-width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                </div>
+                <a href="#lyrics" class="btn btn-outline">View All Lyrics</a>
             </div>
         </section>
     `,
 
     renderAbout: () => `
-        <section class="container animate-on-scroll visible">
+        <section id="about" class="container animate-on-scroll">
             <div class="section-header">
                 <h2>Biography</h2>
             </div>
             <div class="grid-2">
                 <div style="position: relative;">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop" alt="Kamila Ratnayake" style="width: 100%; border-radius: var(--radius-lg); position: sticky; top: 120px;">
+                    <img src="images/kamila-indoor.png" alt="Kamila Ratnayake" style="width: 100%; border-radius: var(--radius-lg); position: sticky; top: 120px;">
                 </div>
                 <div style="font-size: 1.1rem; line-height: 1.9;">
                     <p class="font-serif" style="font-size: 1.5rem; color: var(--clr-accent); margin-bottom: 2rem;">"Words are not merely sounds; they are the vessels of our shared human experience."</p>
@@ -72,7 +59,7 @@ const Pages = {
     `,
 
     renderLyricsList: () => `
-        <section class="container animate-on-scroll visible">
+        <section id="lyrics" class="container animate-on-scroll">
             <div class="section-header">
                 <h2>Lyrics Collection</h2>
                 <p class="text-muted" style="margin-top: 1rem;">Explore the complete archive of songs penned by Kamila Ratnayake.</p>
@@ -104,7 +91,7 @@ const Pages = {
 
             <div class="grid-3" id="lyricsGrid">
                 ${siteData.lyrics.map(lyric => `
-                    <div class="card lyric-item" onclick="app.navigate('#/lyrics/${lyric.id}')" data-title="${lyric.title_en.toLowerCase()} ${lyric.title_si}" data-singer="${lyric.singer}" data-composer="${lyric.composer}" data-genre="${lyric.genre}" data-album="${lyric.album}" data-year="${lyric.year}">
+                    <div class="card lyric-item" onclick="app.openLyricModal('${lyric.id}')" data-title="${lyric.title_en.toLowerCase()} ${lyric.title_si}" data-singer="${lyric.singer}" data-composer="${lyric.composer}" data-genre="${lyric.genre}" data-album="${lyric.album}" data-year="${lyric.year}">
                         <h3 class="lyric-title-si">${lyric.title_si}</h3>
                         <p class="lyric-meta">${lyric.title_en}</p>
                         <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--clr-text-muted);">
@@ -123,12 +110,11 @@ const Pages = {
 
     renderLyricDetail: (id) => {
         const lyric = siteData.lyrics.find(l => l.id === id);
-        if(!lyric) return `<section class="container"><div class="section-header"><h2>Lyric Not Found</h2></div></section>`;
+        if(!lyric) return `<div class="section-header"><h2>Lyric Not Found</h2></div>`;
         
         return `
-        <section class="container animate-on-scroll visible">
             <div style="margin-bottom: 2rem;">
-                <a href="#/lyrics" class="btn btn-outline" style="padding: 0.5rem 1rem;" data-link>&larr; Back to Collection</a>
+                <button onclick="app.closeLyricModal()" class="btn btn-outline" style="padding: 0.5rem 1rem;">&larr; Back to Collection</button>
             </div>
             
             <div class="reader-mode-controls">
@@ -149,21 +135,20 @@ const Pages = {
                     <div><strong style="color: var(--clr-accent);">Year:</strong> ${lyric.year}</div>
                 </div>
 
-                <div class="lyric-text">${lyric.content}</div>
+                <div class="lyric-text">${lyric.content.replace(/\n/g, '<br>')}</div>
                 
                 <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--clr-border);">
                     <h3 class="font-serif">Share this lyric</h3>
                     <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
-                        <button class="btn btn-outline" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!')">Copy Link</button>
+                        <button class="btn btn-outline" onclick="navigator.clipboard.writeText('${window.location.origin}${window.location.pathname}#/lyrics/${lyric.id}'); alert('Link copied!')">Copy Link</button>
                     </div>
                 </div>
             </div>
-        </section>
         `;
     },
 
     renderSongs: () => `
-        <section class="container animate-on-scroll visible">
+        <section id="songs" class="container animate-on-scroll">
             <div class="section-header">
                 <h2>Featured Songs</h2>
                 <p class="text-muted" style="margin-top: 1rem;">Listen to the melodies that carry Kamila's words.</p>
@@ -177,7 +162,7 @@ const Pages = {
                         </div>
                         <h3 class="lyric-title-si" style="font-size: 1.3rem;">${lyric.title_si} (${lyric.title_en})</h3>
                         <p class="text-muted" style="font-size: 0.9rem;">Singer: ${lyric.singer} | Composer: ${lyric.composer}</p>
-                        <a href="#/lyrics/${lyric.id}" class="text-accent" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem;" data-link>View Lyrics &rarr;</a>
+                        <a href="javascript:void(0)" onclick="app.openLyricModal('${lyric.id}')" class="text-accent" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem;">View Lyrics &rarr;</a>
                     </div>
                 `).join('')}
             </div>
@@ -185,7 +170,7 @@ const Pages = {
     `,
 
     renderAwards: () => `
-        <section class="container animate-on-scroll visible">
+        <section id="awards" class="container animate-on-scroll">
             <div class="section-header">
                 <h2>Awards & Recognition</h2>
                 <p class="text-muted" style="margin-top: 1rem;">Honoring a legacy of lyrical excellence.</p>
@@ -206,7 +191,7 @@ const Pages = {
     `,
 
     renderGallery: () => `
-        <section class="container animate-on-scroll visible">
+        <section id="gallery" class="container animate-on-scroll">
             <div class="section-header">
                 <h2>Gallery</h2>
                 <p class="text-muted" style="margin-top: 1rem;">Moments captured in time.</p>
@@ -226,7 +211,7 @@ const Pages = {
     `,
 
     renderContact: () => `
-        <section class="container animate-on-scroll visible">
+        <section id="contact" class="container animate-on-scroll">
             <div class="section-header">
                 <h2>Get in Touch</h2>
                 <p class="text-muted" style="margin-top: 1rem;">For professional inquiries and collaborations.</p>

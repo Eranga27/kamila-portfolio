@@ -7,91 +7,143 @@ const app = {
         // Set current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // Mobile Menu
+        // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
 
-        // Router listeners
+        // Render all sections for the single-page layout
+        this.renderAllSections();
+
+        // Router listeners (handles deep links and back button)
         window.addEventListener('hashchange', this.router.bind(this));
         
+        // Smooth scrolling for navigation clicks
         document.body.addEventListener('click', e => {
-            if (e.target.matches('[data-link]') || e.target.closest('[data-link]')) {
-                e.preventDefault();
-                const link = e.target.matches('[data-link]') ? e.target : e.target.closest('[data-link]');
-                this.navigate(link.href);
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
+            const link = e.target.closest('a');
+            if (link && link.hash && !link.hasAttribute('data-modal-trigger')) {
+                const href = link.getAttribute('href');
+                // Standard section navigation (e.g. #about, #lyrics)
+                const targetId = href.replace('#/', '').replace('#', '');
+                
+                // Allow detail paths to pass through to the router
+                if (targetId.startsWith('lyrics/')) {
+                    return;
+                }
+
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Update location hash silently without triggering router scroll jump
+                    window.history.pushState(null, null, '#' + targetId);
+                    
+                    // Update active class on nav links
+                    document.querySelectorAll('.nav-link').forEach(navLink => {
+                        navLink.classList.remove('active');
+                        const navHref = navLink.getAttribute('href');
+                        if (navHref === '#' + targetId || navHref === '#/' + targetId) {
+                            navLink.classList.add('active');
+                        }
+                    });
+
+                    // Close mobile menu if active
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
                 }
             }
         });
 
-        // Initial Route
+        // Trigger initial routing
         this.router();
         
-        // Setup observer for scroll animations
+        // Setup observer for fade-in animations on scroll
         this.setupScrollObserver();
+
+        // Setup scroll spy for active nav link highlighting
+        this.setupScrollSpy();
     },
 
-    navigate(url) {
-        window.location.hash = url.startsWith('#') ? url : '#' + url;
-    },
-
-    async router() {
-        // Fallback to '/' if no hash is present
-        const hash = window.location.hash;
-        const path = hash ? hash.slice(1) : '/';
+    renderAllSections() {
+        const appContainer = document.getElementById('app');
         
         let html = '';
-
-        // Simple Router
-        if (path === '/' || path === '/index.html') {
-            html = Pages.renderHome();
-        } else if (path === '/about') {
-            html = Pages.renderAbout();
-        } else if (path === '/lyrics') {
-            html = Pages.renderLyricsList();
-        } else if (path.startsWith('/lyrics/')) {
-            const id = path.split('/')[2];
-            html = Pages.renderLyricDetail(id);
-        } else if (path === '/songs') {
-            html = Pages.renderSongs();
-        } else if (path === '/awards') {
-            html = Pages.renderAwards();
-        } else if (path === '/gallery') {
-            html = Pages.renderGallery();
-        } else if (path === '/contact') {
-            html = Pages.renderContact();
-        } else {
-            html = `<section class="container"><div class="section-header"><h2>404 - Page Not Found</h2></div></section>`;
-        }
-
-        // Active Link state
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href === '#' + path || (path.startsWith('/lyrics') && href === '#/lyrics')) {
-                link.classList.add('active');
-            }
-        });
-
-        // Page Transition
-        const appContainer = document.getElementById('app');
-        appContainer.classList.add('fade-out');
-        
-        await new Promise(r => setTimeout(r, 200)); // wait for fade out
+        html += Pages.renderHome();       // Hero & Featured Excerpts
+        html += Pages.renderAbout();      // Biography
+        html += Pages.renderLyricsList(); // Lyrics Collection
+        html += Pages.renderSongs();      // Songs
+        html += Pages.renderAwards();     // Awards
+        html += Pages.renderGallery();    // Gallery
+        html += Pages.renderContact();    // Contact
         
         appContainer.innerHTML = html;
-        window.scrollTo(0, 0);
+    },
+
+    router() {
+        const hash = window.location.hash;
+        const cleanHash = hash.replace('#/', '').replace('#', '');
         
-        appContainer.classList.remove('fade-out');
+        if (cleanHash.startsWith('lyrics/')) {
+            const id = cleanHash.split('/')[1];
+            this.openLyricModal(id, true);
+        } else {
+            // Close lyric modal if navigating back to main content
+            const modal = document.getElementById('lyricModal');
+            if (modal && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+            
+            // Scroll to the active hash section
+            if (cleanHash) {
+                const targetElement = document.getElementById(cleanHash);
+                if (targetElement) {
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }, 50);
+                }
+            }
+        }
+    },
+
+    // Modal Control functions
+    openLyricModal(id, fromRouter = false) {
+        const lyricHtml = Pages.renderLyricDetail(id);
+        const modalBody = document.getElementById('modalLyricBody');
+        const modal = document.getElementById('lyricModal');
         
-        // Re-trigger scroll observer for new elements
-        setTimeout(() => {
-            this.setupScrollObserver();
-        }, 100);
+        if (!modalBody || !modal) return;
+        
+        modalBody.innerHTML = lyricHtml;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+        // Update URL to match current lyric detail path if opened by user click
+        if (!fromRouter) {
+            window.location.hash = `/lyrics/${id}`;
+        }
+    },
+
+    closeLyricModal() {
+        const modal = document.getElementById('lyricModal');
+        if (modal && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Revert hash to the lyrics collection section
+            window.location.hash = 'lyrics';
+        }
+    },
+
+    handleModalCloseClick(e) {
+        // Close modal if clicked directly on the overlay backdrop
+        if (e.target === document.getElementById('lyricModal')) {
+            this.closeLyricModal();
+        }
     },
 
     setupScrollObserver() {
@@ -105,6 +157,36 @@ const app = {
 
         document.querySelectorAll('.animate-on-scroll:not(.visible)').forEach(el => {
             observer.observe(el);
+        });
+    },
+
+    setupScrollSpy() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links .nav-link, .brand.nav-link');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-30% 0px -50% 0px', // Trigger when section occupies the active focus area
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        const href = link.getAttribute('href');
+                        if (href === '#' + id || href === '#/' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
         });
     },
 
@@ -159,11 +241,10 @@ const app = {
     },
 
     adjustFontSize(direction) {
-        // direction: 1 for increase, -1 for decrease
         const root = document.documentElement;
         this.fontSize += (direction * 0.25);
         
-        // clamp font size between 1rem and 2rem
+        // clamp font size between 1rem and 2.5rem
         if (this.fontSize < 1) this.fontSize = 1;
         if (this.fontSize > 2.5) this.fontSize = 2.5;
         

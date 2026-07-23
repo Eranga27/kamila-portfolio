@@ -84,11 +84,11 @@ const siteData = {
     ],
     
     gallery: [
-        { url: "https://images.unsplash.com/photo-1516280440502-65f53b827e8a?q=80&w=600&auto=format&fit=crop", caption: "At the 2022 State Music Awards" },
-        { url: "https://images.unsplash.com/photo-1551043047-1d2adf00f3fd?q=80&w=600&auto=format&fit=crop", caption: "Writing session at the home studio" },
-        { url: "https://images.unsplash.com/photo-1493225457124-a1a2a5f5646a?q=80&w=600&auto=format&fit=crop", caption: "Album launch event, 2018" },
-        { url: "https://images.unsplash.com/photo-1520607162513-322f336ea880?q=80&w=600&auto=format&fit=crop", caption: "Discussion with composers" },
-        { url: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?q=80&w=600&auto=format&fit=crop", caption: "Receiving the Sumathi Award" },
-        { url: "https://images.unsplash.com/photo-1455390582262-044cdead2708?q=80&w=600&auto=format&fit=crop", caption: "Quiet moments of inspiration" }
+        { url: "images/kamila-garden.png", caption: "At the 2022 State Music Awards" },
+        { url: "images/kamila-indoor.png", caption: "Writing session at the home studio" },
+        { url: "images/kamila-garden.png", caption: "Album launch event, 2018" },
+        { url: "images/kamila-indoor.png", caption: "Discussion with composers" },
+        { url: "images/kamila-garden.png", caption: "Receiving the Sumathi Award" },
+        { url: "images/kamila-indoor.png", caption: "Quiet moments of inspiration" }
     ]
 };
