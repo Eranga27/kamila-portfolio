@@ -2,7 +2,7 @@ const siteData = {
     hero: {
         name: "Kamila Ratnayake",
         tagline: "Weaving emotions into words. A journey through Sinhala music and poetry.",
-        bioPreview: "Kamila Ratnayake is an acclaimed Sinhala lyricist whose words have breathed life into countless melodies. With a deep appreciation for classical literature and a keen understanding of modern human experiences, her works resonate across generations. Her portfolio spans over two decades of evocative songwriting."
+        bioPreview: "A professional lyricist creating evocative Sinhala lyrics since 2005. Capable of creating lyrics adjusted to any given concept, music track, and visual, her works resonate across generations and capture the deep essence of human experience."
     },
     
     lyrics: [
@@ -16,21 +16,8 @@ const siteData = {
             album: "Sihina Wasanthaya",
             year: "2018",
             excerpt: "සඳ රෑ සිහිනේ ළංවී රහසේ...\nහිත හඬනා කඳුළින්...",
-            content: `සඳ රෑ සිහිනේ ළංවී රහසේ
-හිත හඬනා කඳුළින්
-මා දෑස පියා ඔබ හමුවෙන්නම්
-මේ රෑ යාමේ...
-
-තරු කඩා වැටෙනා මේ අහස් තලේ
-ඔබෙ සිනහා පෙනෙනවා වගේ
-මා තනිවී නැත මේ සංසාරේ
-ඔබ ඉන්නවා මා ළඟින්...
-
-සීතල පිනි බිඳු වැටෙනා වෙලාවේ
-හද ගැහෙනා රිද්මය ඇසේ
-මේ ආදරේ කවදාවත් නොමියෙන
-සදාකාලික ගීතයකි...`,
-            youtube_id: "dQw4w9WgXcQ" // placeholder
+            content: `සඳ රෑ සිහිනේ ළංවී රහසේ\nහිත හඬනා කඳුළින්\nමා දෑස පියා ඔබ හමුවෙන්නම්\nමේ රෑ යාමේ...`,
+            youtube_id: "xo-wG8Bim3k"
         },
         {
             id: "2",
@@ -42,21 +29,8 @@ const siteData = {
             album: "Wassa",
             year: "2021",
             excerpt: "මල් වරුසා වැටෙනා මේ හැන්දෑවේ...\nනුඹේ සුවඳ දැනේ...",
-            content: `මල් වරුසා වැටෙනා මේ හැන්දෑවේ
-නුඹේ සුවඳ දැනේ මගෙ හදවතේ
-ඈත ඉඳන් පාවී එනවා වගේ
-ඔබෙ කටහඬ මේ සුළඟේ...
-
-වලාකුළු අතරින් හිරු බසින වෙලේ
-මතකයන් අවදිවෙනවා හිතේ
-නුඹ නැති අඩුව දැනෙනවා රහසේ
-මේ මල් වරුසාවේ...
-
-හීනෙන් වත් ඇවිදින් යන්නට
-නුඹට බැරිද එක මොහොතක්
-මා බලා ඉන්නවා මගෙ දෑසින්
-නුඹ එනතුරු මේ හැන්දෑවේ...`,
-            youtube_id: "dQw4w9WgXcQ"
+            content: `මල් වරුසා වැටෙනා මේ හැන්දෑවේ\nනුඹේ සුවඳ දැනේ මගෙ හදවතේ\nඈත ඉඳන් පාවී එනවා වගේ\nඔබෙ කටහඬ මේ සුළඟේ...`,
+            youtube_id: "PNCVNyyuzzc"
         },
         {
             id: "3",
@@ -68,21 +42,21 @@ const siteData = {
             album: "Kalaya",
             year: "2015",
             excerpt: "අතීතය සිතුවමක් වගේ...\nමැකී නොයන...",
-            content: `අතීතය සිතුවමක් වගේ
-මැකී නොයන මගෙ හදවතේ
-කාලය ගෙවී ගියත් රහසේ
-මතකයන් තවම ජීවත් වේ...
-
-පෙර දා අප ඇවිද ගිය මාවතේ
-අද තනියම මා පියවර නගමි
-සුළඟට මුසුවුණු ඔබෙ සිනහව
-තවමත් මා සවන් වැකේ...
-
-ජීවිතය ගඟක් වගේ ගලා යයි
-නොනවතින ගමනක අප සැවොම
-එහෙත් ඒ අතීතයේ සොඳුරු බව
-සදාකාලිකයි මගෙ මතකයේ...`,
-            youtube_id: "dQw4w9WgXcQ"
+            content: `අතීතය සිතුවමක් වගේ\nමැකී නොයන මගෙ හදවතේ\nකාලය ගෙවී ගියත් රහසේ\nමතකයන් තවම ජීවත් වේ...`,
+            youtube_id: "wNZKLYo_o1Q"
+        },
+        {
+            id: "4",
+            title_si: "පාට සිහිනේ",
+            title_en: "Paata Sihine",
+            singer: "Darshana Pramod",
+            composer: "Unknown",
+            genre: "Pop",
+            album: "Singles",
+            year: "2015",
+            excerpt: "Award-winning lyrics capturing colorful dreams...",
+            content: `(Full Sinhala lyrics for Paata Sihine...)`,
+            youtube_id: "hu3SaYiylM8"
         }
     ],
     
@@ -99,13 +73,13 @@ const siteData = {
         },
         {
             year: "2015",
-            title: "Sumathi Awards - Best Lyricist",
-            description: "Honored for outstanding contribution to television music."
+            title: "Rajya Sammana Ulele - Best Song Award",
+            description: "Won for the lyrics of 'Paata Sihine' sung by Darshana Pramod."
         },
         {
-            year: "2010",
-            title: "Signis Awards - Best Song Lyrics",
-            description: "Awarded for the poignant lyrics in the cinematic masterpiece 'Wimana'."
+            year: "2015",
+            title: "Sumathi Awards - Best Lyricist",
+            description: "Honored for outstanding contribution to television music."
         }
     ],
     

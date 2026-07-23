@@ -62,10 +62,10 @@ const Pages = {
                 </div>
                 <div style="font-size: 1.1rem; line-height: 1.9;">
                     <p class="font-serif" style="font-size: 1.5rem; color: var(--clr-accent); margin-bottom: 2rem;">"Words are not merely sounds; they are the vessels of our shared human experience."</p>
-                    <p>Born and raised in the cultural heartland of Kandy, Kamila Ratnayake developed an early affinity for literature. Surrounded by classical Sinhala poetry and the rich rhythmic traditions of Sri Lankan folk music, her foundation in lyrical writing was established well before she penned her first professional song.</p>
-                    <p>After graduating from the University of Peradeniya with a degree in Sinhala Literature, Kamila began her career writing for local theater productions. Her ability to distill complex emotions into simple, evocative language quickly caught the attention of prominent music directors in the late 90s.</p>
-                    <p>Over the past two decades, Kamila has authored over 400 songs, collaborating with both legendary veterans and contemporary voices in the Sri Lankan music industry. Her distinct style—characterized by the minimal use of words to convey profound emotional depth—has earned her numerous accolades, including multiple State Music Awards and Sumathi Awards.</p>
-                    <p>Today, she continues to write while mentoring the next generation of lyricists through creative writing workshops and literature programs across the island. Her digital archive serves as a repository for her life's work, ensuring that the art of Sinhala lyricism is preserved for future generations.</p>
+                    <p>I am a professional lyricist, actively creating lyrics since 2005. Over the years, my deep appreciation for classical literature and understanding of human experiences have allowed me to weave emotions into words that resonate across generations.</p>
+                    <p>I specialize in creating lyrics tailored to any given concept, music track, and visual. Whether working with legendary veterans or emerging contemporary voices in the Sri Lankan music industry, I am fully capable of adapting my writing style to suit any musician or singer perfectly.</p>
+                    <p>Throughout my career, this adaptability and dedication to the craft have been recognized with numerous accolades. A proud milestone was winning the Best Song Award at the Rajya Sammana Ulele in 2015 for the lyrics of "Paata Sihine," sung by Darshana Pramod.</p>
+                    <p>Today, my digital archive serves as a repository for my life's work. I continue to explore new melodies and concepts, always eager to bring fresh musical visions to life through evocative Sinhala lyricism.</p>
                 </div>
             </div>
         </section>
@@ -249,8 +249,8 @@ const Pages = {
                     </p>
                     
                     <div style="margin-top: 3rem;">
-                        <h4 class="font-sans" style="margin-bottom: 1rem; color: var(--clr-text-muted);">Representation</h4>
-                        <p>For publishing rights and synchronization licenses, please contact the legal representation team.</p>
+                        <h4 class="font-sans" style="margin-bottom: 1rem; color: var(--clr-text-muted);">Custom Lyric Writing</h4>
+                        <p>I am capable of creating lyrics adjusting to any musician or singer according to a given concept, music track, and visual. <strong>Charges are negotiable.</strong> Please reach out to discuss your project.</p>
                     </div>
                 </div>
                 
