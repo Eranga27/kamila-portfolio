@@ -173,6 +173,8 @@ const app = {
 };
 
 // Start App when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => app.init());
+} else {
     app.init();
-});
+}
