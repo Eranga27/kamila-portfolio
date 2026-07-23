@@ -167,8 +167,8 @@ const app = {
         if (this.fontSize < 1) this.fontSize = 1;
         if (this.fontSize > 2.5) this.fontSize = 2.5;
         
-        root.style.setProperty('--lyric-font-size', \`\${this.fontSize}rem\`);
-        root.style.setProperty('--lyric-line-height', \`\${this.fontSize > 1.5 ? 1.8 : 2}\`);
+        root.style.setProperty('--lyric-font-size', `${this.fontSize}rem`);
+        root.style.setProperty('--lyric-line-height', `${this.fontSize > 1.5 ? 1.8 : 2}`);
     }
 };
 
