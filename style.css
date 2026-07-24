@@ -52,8 +52,7 @@ html {
 }
 
 body {
-    background: linear-gradient(135deg, var(--clr-bg) 0%, #fae6ea 100%);
-    background-attachment: fixed;
+    background-color: var(--clr-bg);
     color: var(--clr-text-main);
     font-family: var(--font-sans);
     line-height: 1.6;
@@ -61,10 +60,22 @@ body {
     transition: color var(--transition-normal);
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: -2;
+    background: linear-gradient(135deg, var(--clr-bg) 0%, #fae6ea 100%);
+    transition: opacity var(--transition-normal);
+}
+
 body.dark-mode {
-    background: linear-gradient(135deg, var(--clr-bg-dark) 0%, #302025 100%);
-    background-attachment: fixed;
+    background-color: var(--clr-bg-dark);
     color: var(--clr-text-dark-main);
+}
+
+body.dark-mode::before {
+    background: linear-gradient(135deg, var(--clr-bg-dark) 0%, #302025 100%);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -144,6 +155,7 @@ section {
     left: 0;
     width: 100%;
     background-color: rgba(253, 251, 247, 0.9);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid var(--clr-border);
@@ -566,22 +578,28 @@ body.dark-mode .footer-bottom { border-top-color: rgba(255,255,255,0.1); }
     .grid-2, .grid-3 { grid-template-columns: 1fr; }
     
     .timeline::after { left: 31px; }
-    .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+    .timeline-item { width: 100%; padding-left: 60px; padding-right: 15px; }
     .timeline-item::after { left: 23px; }
     .right { left: 0; }
     
-    .footer-content { flex-direction: column; text-align: center; gap: 2rem; }
+    .footer-content { flex-direction: column; text-align: center; gap: 1.5rem; }
 }
 
 @media screen and (max-width: 480px) {
-    .hero-text h1 { font-size: 2.5rem; }
-    .hero-tagline { font-size: 1rem; }
+    .hero-text h1 { font-size: 2rem; }
+    .hero-tagline { font-size: 0.95rem; }
     .container { padding: 0 1rem; }
-    .section-header h2 { font-size: 2rem; }
-    section { padding: 4rem 0; }
-    .modal-card { padding: 2rem 1.5rem; }
-    .hero { min-height: 80vh; }
-    .hero-image-wrapper { max-width: 100%; margin: 2rem 0 0 0; }
+    .section-header { margin-bottom: 2rem; }
+    .section-header h2 { font-size: 1.75rem; }
+    section { padding: 3rem 0; }
+    .card { padding: 1.5rem; }
+    .modal-card { padding: 1.5rem 1rem; width: 95%; }
+    .hero { min-height: 70vh; }
+    .hero-image-wrapper { max-width: 100%; margin: 1.5rem 0 0 0; }
+    .lyric-title-si { font-size: 1.3rem; }
+    .timeline-item { padding-left: 50px; padding-right: 10px; }
+    .timeline::after { left: 21px; }
+    .timeline-item::after { left: 13px; }
 }
 
 /* Modal Styles */
