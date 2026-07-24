@@ -52,16 +52,18 @@ html {
 }
 
 body {
-    background-color: var(--clr-bg);
+    background: linear-gradient(135deg, var(--clr-bg) 0%, #fae6ea 100%);
+    background-attachment: fixed;
     color: var(--clr-text-main);
     font-family: var(--font-sans);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color var(--transition-normal), color var(--transition-normal);
+    transition: color var(--transition-normal);
 }
 
 body.dark-mode {
-    background-color: var(--clr-bg-dark);
+    background: linear-gradient(135deg, var(--clr-bg-dark) 0%, #302025 100%);
+    background-attachment: fixed;
     color: var(--clr-text-dark-main);
 }
 
@@ -569,6 +571,17 @@ body.dark-mode .footer-bottom { border-top-color: rgba(255,255,255,0.1); }
     .right { left: 0; }
     
     .footer-content { flex-direction: column; text-align: center; gap: 2rem; }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-text h1 { font-size: 2.5rem; }
+    .hero-tagline { font-size: 1rem; }
+    .container { padding: 0 1rem; }
+    .section-header h2 { font-size: 2rem; }
+    section { padding: 4rem 0; }
+    .modal-card { padding: 2rem 1.5rem; }
+    .hero { min-height: 80vh; }
+    .hero-image-wrapper { max-width: 100%; margin: 2rem 0 0 0; }
 }
 
 /* Modal Styles */
