@@ -84,11 +84,11 @@ const siteData = {
     ],
     
     gallery: [
-        { url: "images/kamila-garden.png", caption: "At the 2022 State Music Awards" },
-        { url: "images/kamila-indoor.png", caption: "Writing session at the home studio" },
-        { url: "images/kamila-garden.png", caption: "Album launch event, 2018" },
-        { url: "images/kamila-indoor.png", caption: "Discussion with composers" },
-        { url: "images/kamila-garden.png", caption: "Receiving the Sumathi Award" },
-        { url: "images/kamila-indoor.png", caption: "Quiet moments of inspiration" }
+        { url: "images/kamila-new-2.jpg", caption: "At the 2022 State Music Awards" },
+        { url: "images/kamila-new-1.jpg", caption: "Writing session at the home studio" },
+        { url: "images/kamila-new-2.jpg", caption: "Album launch event, 2018" },
+        { url: "images/kamila-new-1.jpg", caption: "Discussion with composers" },
+        { url: "images/kamila-new-2.jpg", caption: "Receiving the Sumathi Award" },
+        { url: "images/kamila-new-1.jpg", caption: "Quiet moments of inspiration" }
     ]
 };

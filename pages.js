@@ -12,7 +12,7 @@ const Pages = {
                 </div>
                 <div class="hero-image-wrapper">
                     <div class="hero-decoration"></div>
-                    <img src="images/kamila-garden.png" alt="Kamila Ratnayake Portrait" class="hero-image">
+                    <img src="images/kamila-new-2.jpg" alt="Kamila Ratnayake Portrait" class="hero-image">
                 </div>
             </div>
         </section>
@@ -45,7 +45,7 @@ const Pages = {
             </div>
             <div class="grid-2">
                 <div style="position: relative;">
-                    <img src="images/kamila-indoor.png" alt="Kamila Ratnayake" style="width: 100%; border-radius: var(--radius-lg); position: sticky; top: 120px;">
+                    <img src="images/kamila-new-1.jpg" alt="Kamila Ratnayake" style="width: 100%; border-radius: var(--radius-lg); position: sticky; top: 120px;">
                 </div>
                 <div style="font-size: 1.1rem; line-height: 1.9;">
                     <p class="font-serif" style="font-size: 1.5rem; color: var(--clr-accent); margin-bottom: 2rem;">"Words are not merely sounds; they are the vessels of our shared human experience."</p>
